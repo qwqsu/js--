@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	h2 {
+		text-align: center;
+	}
+
+	th,
+	td {
+		padding: 5px 10px;
+	}
+
+	table,
+	th,
+	td {
+		margin: 0 auto;
+		border: 1px solid black;
+		text-align: center;
+		border-collapse: collapse;
+	}
+</style>
+
+<body>
+	<h2>订单确认</h2>
+	<table>
+		<tr>
+			<th>商品名称</th>
+			<th>商品价格</th>
+			<th>商品数量</th>
+			<th>总价</th>
+			<th>收货地址</th>
+		</tr>
+		<tr>
+			<td>小米</td>
+			<td id="jiage">199元</td>
+			<td id="shuliang">1</td>
+			<td id="zongjia">199元</td>
+			<td id="dizhi">武汉黑马</td>
+		</tr>
+	</table>
+</body>
+<script>
+	let price = +prompt('价格')
+	let num = +prompt('数量')
+	let address = prompt('地址')
+
+	let total = price * num
+
+	// 注释：通过getElementById函数获取对应id，然后通过innerTest属性将用户输入的价格、数量、总价和地址显示在表格中。
+	const jiage = document.getElementById('jiage')
+	const shuliang = document.getElementById('shuliang')
+	const zongjia = document.getElementById('zongjia')
+	const dizhi = document.getElementById('dizhi')
+
+	jiage.innerText = price + '元'
+	shuliang.innerText = num
+	zongjia.innerText = total + '元'
+	dizhi.innerText = address
+
+	// //注释：通过querySelector方法获取表格中的对应单元格，并将用户输入的价格、数量、总价和地址显示在表格中。	
+	// document.querySelector('tr:nth-child(2) td:nth-child(2)').innerText = price + '元'
+	// document.querySelector('tr:nth-child(2) td:nth-child(3)').innerText = num
+	// document.querySelector('tr:nth-child(2) td:nth-child(4)').innerText = total
+	// document.querySelector('tr:nth-child(2) td:nth-child(5)').innerText =  address
+
+</script>
+
+</html>

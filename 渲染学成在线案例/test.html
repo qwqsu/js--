@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	.box-bd ul {
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.box-bd li {
+		margin: 10px;
+		text-align: center;
+	}
+
+	.box-bd img {
+		width: 150px;
+		height: auto;
+	}
+</style>
+
+<body>
+	<div>
+		<div class="box-hd">
+			<h1>标题</h1>
+		</div>
+		<div class="box-bd">
+			<ul>
+
+				<script>
+					let data = [
+						{
+							title: '标题1',
+							img: '20_bea304c528.png'
+						},
+						{
+							title: '标题2',
+							img: '20_bea304c528.png'
+						},
+						{
+							title: '标题3',
+							img: '20_bea304c528.png'
+						}
+					]
+					for (let i = 0; i < data.length; i++) {
+						document.write(`
+                        
+                            <li>
+                                <a href="">
+                                    <img src="${data[i].img}" alt="" srcset="">
+                                    <h4>${data[i].title}</h4>
+                                </a>
+                            </li>
+                        
+                        `)
+					}
+				</script>
+			</ul>
+		</div>
+	</div>
+</body>
+
+</html>

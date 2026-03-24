@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	.box {
+		width: 800px;
+		height: 200px;
+		display: flex;
+		justify-content: space-around;
+		align-items: flex-end;
+		border-left: 1px solid blue;
+		border-bottom: 1px solid blue;
+		margin: 50px auto;
+		text-align: center;
+
+	}
+
+	.zhu {
+		width: 80px;
+		background-color: springgreen;
+		position: relative;
+		
+	}
+	div .zhu span {
+		position: absolute;
+		top: -20px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+</style>
+
+<body>
+	<script>
+		let data = [];
+		for (let i = 1; i <= 4; i++) {
+			data.push(prompt(`请输入第${i}季度的销售额`))
+		}
+
+		document.write('<div class="box">')
+
+		for (let i = 0; i < data.length; i++) {
+
+			document.write(`
+			<div class='zhu' style= "height:${data[i]}px;">
+				<span>${data[i]}</span>
+				<h4>第${i + 1}季度</h4>
+			</div>
+			`
+		)
+
+		}
+		document.write('</div>');
+
+
+
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>多评论发送</title>
+  <style>
+    /* 简单样式，让布局更清晰 */
+    .wrapper {
+      margin: 10px 0;
+    }
+    .avatar {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ccc;
+      vertical-align: top;
+      margin-right: 10px;
+    }
+    #tx {
+      width: 300px;
+      padding: 5px;
+      resize: none;
+    }
+    button {
+      margin-top: 5px;
+      cursor: pointer;
+    }
+    .total {
+      opacity: 0; /* 初始隐藏 */
+      color: #666;
+    }
+    .list {
+      margin-top: 20px;
+    }
+    .item {
+      display: flex;
+      align-items: flex-start;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #eee;
+      border-radius: 5px;
+    }
+    .info {
+      flex: 1;
+    }
+    .name {
+      font-weight: bold;
+      margin: 0 0 5px 0;
+    }
+    .text {
+      margin: 0 0 5px 0;
+      color: #333;
+    }
+    .time {
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <i class="avatar"></i>
+    <textarea id="tx" placeholder="发一条友善的评论" rows="2" maxlength="200"></textarea>
+    <button>发布</button>
+  </div>
+  <div class="wrapper">
+    <span class="total">0/200字</span>
+  </div>
+  <div class="list">
+    <!-- 评论列表：动态添加评论元素，不再预设隐藏的item -->
+  </div>
+
+  <script>
+    const span = document.querySelector('.total')
+    const texta = document.querySelector('#tx')
+    const list = document.querySelector('.list') // 评论列表容器
+    const but = document.querySelector('button')
+
+    // 1. 焦点/失焦：显示/隐藏字数统计
+    texta.addEventListener('focus', function () {
+      span.style.opacity = 1
+    })
+    texta.addEventListener('blur', function () {
+      span.style.opacity = 0
+    })
+
+    // 2. 实时更新字数统计
+    texta.addEventListener('input', function (e) {
+      span.innerHTML = `${e.target.value.length}/200字`
+    })
+
+    // 3. 封装创建评论的函数（核心：每次发送都新建元素）
+    function createComment(content) {
+      // 1. 创建评论外层容器
+      const item = document.createElement('div')
+      item.className = 'item'
+
+      // 2. 创建头像
+      const avatar = document.createElement('i')
+      avatar.className = 'avatar'
+
+      // 3. 创建信息容器
+      const info = document.createElement('div')
+      info.className = 'info'
+
+      // 4. 创建用户名
+      const name = document.createElement('p')
+      name.className = 'name'
+      name.textContent = '清风徐来' // 可替换为实际用户名
+
+      // 5. 创建评论内容
+      const text = document.createElement('p')
+      text.className = 'text'
+      text.textContent = content // 传入的评论内容
+
+      // 6. 创建时间（格式化当前时间）
+      const time = document.createElement('p')
+      time.className = 'time'
+      const now = new Date()
+      // 格式化时间：YYYY-MM-DD HH:MM:SS
+      const formatTime = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`
+      time.textContent = formatTime
+
+      // 7. 组装元素
+      info.appendChild(name)
+      info.appendChild(text)
+      info.appendChild(time)
+      item.appendChild(avatar)
+      item.appendChild(info)
+
+      // 8. 返回创建好的评论元素
+      return item
+    }
+
+    // 4. 回车发送评论
+    texta.addEventListener('keyup', function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault() // 阻止回车换行
+        const content = texta.value.trim()
+        if (content) {
+          // 创建新评论并添加到列表
+          const comment = createComment(content)
+          list.appendChild(comment)
+          // 清空输入框
+          texta.value = ''
+          // 重置字数统计
+          span.innerHTML = '0/200字'
+        }
+      }
+    })
+
+    // 5. 点击按钮发送评论
+    but.addEventListener('click', function () {
+      const content = texta.value.trim()
+      if (content) {
+        // 创建新评论并添加到列表
+        const comment = createComment(content)
+        list.appendChild(comment)
+        // 清空输入框
+        texta.value = ''
+        // 重置字数统计
+        span.innerHTML = '0/200字'
+      }
+    })
+  </script>
+</body>
+</html>

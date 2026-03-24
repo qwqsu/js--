@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            display: inline-block;
+            width: 250px;
+            height: 30px;
+            vertical-align: middle;
+            line-height: 30px;
+            padding-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text">
+
+    <script>
+
+        const input = document.querySelector('[type]')
+        input.addEventListener('input', function (e) {
+            //input.value=e.target.value.replace(/sb|不好/g, '**')
+            input.value = input.value.replace(/sb|不好/gi, '**')
+
+        })
+
+    </script>
+
+</body>
+
+</html>
