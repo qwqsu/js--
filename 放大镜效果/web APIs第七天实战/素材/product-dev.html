@@ -465,7 +465,7 @@
       }
     })
 
-    //获取盒子class=num，然后通过e.target.tagName判断点击的元素是否为a标签，如果是a标签就删除对应的数据并重新渲染表格
+    //获取盒子class=num，然后通过e.target.tagName判断点击的元素是否为a标签，如果是a标签就删除对应的数据并重新渲染表格，这样就实现了点击a标签删除数据的功能
     const trannum = document.querySelector('.num')
     trannum.addEventListener('click', function (e) {
       if (e.target.tagName === 'A') {
